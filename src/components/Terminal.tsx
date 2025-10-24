@@ -94,6 +94,25 @@ export default function Terminal() {
     });
   }, [outputs]);
 
+  // Mobile-specific: Focus input when terminal is tapped
+  useEffect(() => {
+    const handleTap = () => {
+      if (inputRef.current && window.innerWidth <= 768) {
+        inputRef.current.focus();
+      }
+    };
+
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener('touchstart', handleTap);
+      scrollContainer.addEventListener('click', handleTap);
+      return () => {
+        scrollContainer.removeEventListener('touchstart', handleTap);
+        scrollContainer.removeEventListener('click', handleTap);
+      };
+    }
+  }, [inputRef]);
+
   return (
     <div
       style={{
@@ -101,11 +120,18 @@ export default function Terminal() {
         display: 'flex',
         flexDirection: 'column',
         minHeight: 0,
+        overflow: 'hidden', // Prevent container overflow
       }}
     >
       <div 
         ref={scrollContainerRef}
-        style={{ flex: 1, overflowY: 'auto', padding: '16px' }}
+        style={{ 
+          flex: 1, 
+          overflowY: 'auto', 
+          overflowX: 'hidden', // Prevent horizontal scroll
+          padding: '16px',
+          WebkitOverflowScrolling: 'touch', // Smooth scrolling on iOS
+        }}
       >
         {/* ASCII Art - Always visible */}
         <div style={{ marginBottom: '24px' }}>
@@ -115,7 +141,9 @@ export default function Terminal() {
             lineHeight: '1.2', 
             fontFamily: 'monospace',
             marginBottom: '16px',
-            overflow: 'auto'
+            overflow: 'auto',
+            whiteSpace: 'pre', // Prevent text wrapping in ASCII art
+            maxWidth: '100%', // Prevent overflow
           }}>
 {`    _ __    __                           _                  __  
    (_) /_  / /___ _____ ___  ___  ____  (_)_  ____  _______/ /_ 
@@ -141,19 +169,19 @@ export default function Terminal() {
         {/* Command history */}
         {outputs.map((output) => (
           <div key={output.id} style={{ marginBottom: '20px' }}>
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
-              <span style={{ color: currentTheme.colors.prompt }}>guest@portfolio:~$</span>
-              <span style={{ color: currentTheme.colors.text }}>{output.command}</span>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
+              <span style={{ color: currentTheme.colors.prompt, flexShrink: 0 }}>guest@portfolio:~$</span>
+              <span style={{ color: currentTheme.colors.text, wordBreak: 'break-word' }}>{output.command}</span>
             </div>
-            <div style={{ paddingLeft: '16px', color: currentTheme.colors.text }}>
+            <div style={{ paddingLeft: '16px', color: currentTheme.colors.text, wordWrap: 'break-word', overflowWrap: 'break-word' }}>
               {output.output}
             </div>
           </div>
         ))}
 
         {/* Current input prompt */}
-        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-          <span style={{ color: currentTheme.colors.prompt, whiteSpace: 'nowrap' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'nowrap' }}>
+          <span style={{ color: currentTheme.colors.prompt, whiteSpace: 'nowrap', flexShrink: 0 }}>
             guest@portfolio:~$
           </span>
           <input
@@ -164,17 +192,20 @@ export default function Terminal() {
             onKeyDown={handleKeyDown}
             style={{
               flex: 1,
+              minWidth: 0, // Allow flex shrinking
               background: 'transparent',
               border: 'none',
               outline: 'none',
               color: currentTheme.colors.text,
               fontFamily: 'inherit',
-              fontSize: 'inherit',
+              fontSize: '16px', // Prevent iOS zoom
               caretColor: currentTheme.colors.accent,
             }}
             autoFocus
             spellCheck={false}
             autoComplete="off"
+            autoCapitalize="off"
+            autoCorrect="off"
           />
         </form>
 
@@ -185,7 +216,8 @@ export default function Terminal() {
             marginTop: '8px', 
             opacity: 0.8, 
             fontSize: '14px', 
-            color: currentTheme.colors.text 
+            color: currentTheme.colors.text,
+            wordWrap: 'break-word',
           }}>
             Suggestions: {suggestions.map((sug, i) => (
               <span key={sug}>
