@@ -2,19 +2,11 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 
-// Type definitions
 export interface CommandOutput {
   id: string;
   command: string;
   output: React.ReactNode;
   timestamp: Date;
-}
-
-export interface TerminalState {
-  outputs: CommandOutput[];
-  commandHistory: string[];
-  historyIndex: number;
-  currentInput: string;
 }
 
 export function useTerminal() {
@@ -24,7 +16,6 @@ export function useTerminal() {
   const [currentInput, setCurrentInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Add a new command output
   const addOutput = useCallback((command: string, output: React.ReactNode) => {
     const newOutput: CommandOutput = {
       id: `${Date.now()}-${Math.random()}`,
@@ -35,12 +26,10 @@ export function useTerminal() {
     setOutputs((prev) => [...prev, newOutput]);
   }, []);
 
-  // Clear all outputs
   const clearOutputs = useCallback(() => {
     setOutputs([]);
   }, []);
 
-  // Add command to history
   const addToHistory = useCallback((command: string) => {
     if (command.trim()) {
       setCommandHistory((prev) => [...prev, command]);
@@ -48,7 +37,6 @@ export function useTerminal() {
     }
   }, []);
 
-  // Navigate command history (arrow keys)
   const navigateHistory = useCallback(
     (direction: 'up' | 'down') => {
       if (commandHistory.length === 0) return;
@@ -70,7 +58,6 @@ export function useTerminal() {
     [commandHistory, historyIndex]
   );
 
-  // Focus input on mount and when outputs change
   useEffect(() => {
     inputRef.current?.focus();
   }, [outputs]);
