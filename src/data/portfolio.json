@@ -1,0 +1,190 @@
+{
+  "name": "Piyush Chawla",
+  "title": "Software Engineer | Backend, MLOps, Cloud | Fast Learner, Faster Shipper",
+  "location": "India",
+  "email": "p1yushchawla2307@gmail.com",
+  "linkedin": "www.linkedin.com/in/piyush-chawla-510675282",
+  "github": "https://github.com/p1yushhhh",
+  "resume": "/Piyush_Resume_MLE.pdf",
+  
+ "about": [
+  "Hi! I'm Piyush, a 4th-year Electronics and Computer Science student at Thapar Institute of Engineering who believes the best way to learn is by shipping.",
+  
+  "I've freelanced across ML, cloud infrastructure, cybersecurity forensics, blockchain, and data science—often jumping into domains I knew nothing about and delivering results that stuck. From building MLOps pipelines on AWS to analyzing security incidents on blue teams, I've learned that strong fundamentals (DSA, system design, OOP) and AI-powered problem-solving beat prior experience every time.",
+  
+  "My sweet spot? Backend architecture, MLOps, and cloud infrastructure. I love designing systems that scale, automating workflows that shouldn't be manual, and debugging things that 'definitely worked yesterday.'",
+  
+  "Previously led product at AIESEC India, coordinating 100+ international participants while building operational efficiency that actually moved metrics. Now I'm focused on landing an SDE role where I can build, break, and optimize production systems.",
+  
+  "When I'm not coding, I'm either gaming, cooking elaborate meals on my hostel room electric pan (Gordon Ramsay would be horrified)"
+],
+  
+"education": [
+  {
+    "degree": "Bachelor of Engineering - Electronics and Computer Science",
+    "school": "Thapar Institute of Engineering and Technology",
+    "location": "Patiala, India",
+    "year": "2022 - 2026",
+    "highlights": [
+      "Core Coursework: Data Structures & Algorithms, Operating Systems, Machine Learning, Database Management Systems, Computer Networks, Artificial Intelligence, Software Engineering",
+      "Focus Areas: Cloud Computing, MLOps, Backend Architecture, System Design",
+      "Engineering Design Projects: Built scalable MLOps pipelines, automated deployment systems, and cloud-native applications"
+    ]
+  }
+]
+,
+  
+"experience": [
+  {
+    "title": "Freelance ML Engineer",
+    "company": "Mira Tech",
+    "period": "Jan 2025 - Mar 2025",
+    "description": [
+      "Architected personalized course recommendation system that increased user engagement by 38% and retention by 15% across 10,000+ user sessions",
+      "Engineered scalable data transformation pipelines for event logs, reducing processing time by 95.8% and accelerating feature delivery by 66%",
+      "Built production-ready ML systems with focus on performance optimization and user impact"
+    ]
+  },
+  {
+    "title": "National Product Manager",
+    "company": "AIESEC in India - UN organization",
+    "period": "July 2024 - June 2025",
+    "description": [
+      "Directed product strategy across 10 national chapters, cutting reporting time by 25% and improving execution accuracy by 45%",
+      "Led cross-functional teams to drive 50% uplift in chapter performance metrics through international partnerships and targeted training",
+      "Managed operational frameworks and tracking tools serving 50,000+ members nationwide"
+    ]
+  },
+  {
+    "title": "Head of Incoming Operations",
+    "company": "AIESEC in Patiala - UN organization",
+    "period": "Feb 2024 - Jan 2025",
+    "description": [
+      "Led 50+ member team to #1 rank in India, winning National (Top 1/22) and Asia Pacific (Top 1/150+) Excellence Awards",
+      "Launched 'Incoming Global Teacher' product from scratch, securing 3 corporate clients and 15+ international teachers",
+      "Coordinated logistics for 100+ international participants while expanding partnerships through 8+ conference presentations"
+    ]
+  },
+  {
+  "title": "Freelance Software Engineer & ML Consultant",
+  "company": "Self-Employed",
+  "period": "2023 - Present",
+  "description": [
+    "Architected and deployed ML models, cloud solutions, and backend systems for clients across multiple industries",
+    "Delivered 100% on-time project completion with scalable, production-grade code on AWS/GCP infrastructure",
+    "Built expertise spanning MLOps, cybersecurity, blockchain, and data engineering through hands-on project delivery"
+  ]
+}
+],
+  
+  "skills": {
+    "languages": ["Python", "SQL", "C++"],
+    "ml_ai": ["TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "NumPy"],
+    "cloud": ["AWS (EC2, S3, Lambda)", "GCP", "Docker", "Kubernetes"],
+    "devops": ["Jenkins", "GitHub Actions", "MLflow", "DVC", "ArgoCD"],
+    "databases": ["PostgreSQL", "MongoDB", "Redis"],
+    "tools": ["Git", "Linux", "VS Code"]
+  },
+  
+
+ "projects": [
+  {
+    "name": "AI Study Buddy",
+    "description": "Containerized AI service architected for scalable, high-concurrency deployment on Kubernetes with fully automated GitOps CI/CD pipeline",
+    "tech": ["Kubernetes", "Docker", "Jenkins", "ArgoCD", "GCP", "Python"],
+    "github": "https://github.com/P1yushhhh/Study-buddy-AI",
+    "demo": "",
+    "highlights": [
+      "Zero-downtime continuous deployment from commit to production",
+      "Engineered scalable Kubernetes cluster for high-concurrency workloads",
+      "Implemented GitOps CI/CD with Jenkins and ArgoCD"
+    ]
+  },
+  {
+    "name": "Phishing Website Detector",
+    "description": "High-precision ML security system with robust MLOps pipeline using DVC and MLflow, automated via GitHub Actions CI/CD",
+    "tech": ["Python", "AWS", "MLOps", "Docker", "GitHub Actions", "DVC", "MLflow"],
+    "github": "https://github.com/P1yushhhh/network-security",
+    "demo": "",
+    "highlights": [
+      "99.3% recall with 0.98 precision and 0.99 F1-score for threat detection",
+      "Automated data drift alerts triggering model retraining",
+      "Daily batch predictions deployed to AWS EC2 via containerized pipeline"
+    ]
+  },
+  {
+  "name": "Hotel Reservation Prediction",
+  "description": "An end-to-end MLOps project to predict booking cancellations, featuring an automated training pipeline, experiment tracking, and a deployed API.",
+  "tech": ["Python", "FastAPI", "Streamlit", "MLflow", "GCP", "Scikit-learn", "LightGBM", "Pandas"],
+  "github": "https://github.com/P1yushhhh/Hotel-Reservation-Prediction",
+  "demo": "",
+  "highlights": [
+    "Achieved 88.3% F1-score and 88.0% accuracy using a LightGBM model tuned with RandomizedSearchCV.",
+    "Built a full MLOps pipeline with data ingestion from Google Cloud (GCP), SMOTE for imbalance, and MLflow tracking.",
+    "Deployed as a REST API using FastAPI (with Pydantic data validation) and built an interactive Streamlit UI for predictions."
+  ]
+},
+  {
+    "name": "Hindi Text Summarizer",
+    "description": "Sequence-to-sequence Transformer model built from scratch for abstractive Hindi news summarization on 300k-article corpus",
+    "tech": ["PyTorch", "TensorFlow", "Keras", "NLP", "Transformers"],
+    "github": "https://github.com/yourusername/hindi-summarizer",
+    "demo": "",
+    "highlights": [
+      "ROUGE-1 F1 score of 0.67 on 300k Hindi news articles",
+      "Custom Multi-Head Attention with masking implementation",
+      "Integrated pre-trained FastText embeddings for long-range dependencies"
+    ]
+  },
+  {
+    "name": "Quantum Cryptography Implementation",
+    "description": "First public open-source implementation of SUMER-128 lightweight cipher for quantum cryptography research, with Python, Qiskit, and C++ implementations",
+    "tech": ["Python", "Qiskit", "C++", "Cryptography", "Quantum Computing"],
+    "github": "https://github.com/P1yushhhh/Quantum-Circuit",
+    "demo": "",
+    "highlights": [
+      "Pioneered open-source implementation of SUMER-128 lightweight cipher",
+      "Architected core cryptographic algorithm for both classical (Python) and quantum (Qiskit) implementations",
+      "Executed rigorous benchmarking with RAPIDS using Qiskit on IBM Quantum hardware"
+    ]
+  },
+  {
+    "name": "Cloud Security Architecture for Blockchain Fintech",
+    "description": "Multi-AZ zero-trust architecture on AWS for blockchain fintech platform with containerized workloads on Amazon EKS, secured via Calico network policies",
+    "tech": ["AWS", "Kubernetes", "Security", "Blockchain", "EKS", "KMS", "VPC"],
+    "github": "https://github.com/P1yushhhh/Blockchain-Cloud-Secuity-Architecture",
+    "demo": "",
+    "highlights": [
+      "Built multi-AZ zero-trust architecture with secure containerized workloads on Amazon EKS",
+      "Enforced network isolation in VPC with Calico network policies for enhanced security",
+      "Secured transaction signing with AWS KMS and encrypted all data at rest (S3, RDS)"
+    ]
+  },
+  {
+  "name": "LLM-Powered Anime Recommender",
+  "description": "A RAG (Retrieval-Augmented Generation) system using LangChain and OpenAI to provide semantic anime recommendations, fully deployed on Kubernetes.",
+  "tech": ["Python", "LangChain", "OpenAI", "ChromaDB", "Streamlit", "Docker", "Kubernetes", "AWS", "Grafana", "Helm"],
+  "github": "https://github.com/P1yushhhh/Anime-Recommender-system",
+  "demo": "",
+  "highlights": [
+    "Built a semantic search & RAG pipeline using OpenAI embeddings and a Chroma vector store.",
+    "Containerized the Streamlit app with Docker and deployed it to a Kubernetes cluster (Minikube) on an AWS EC2 instance.",
+    "Utilized LangChain's RetrievalQA chain to pass retrieved context to an OpenAI LLM for natural language responses.",
+    "Implemented Kubernetes-native deployment (YAML) and secret management for API keys.",
+    "Integrated cluster-wide monitoring using Grafana and Helm charts."
+  ]
+},
+{
+  "name": "Speech Emotion Recognition (SER)",
+  "description": "A high-accuracy deep learning model using the Wav2Vec2 transformer to classify emotions from raw audio, achieving 95% accuracy on the RAVDESS dataset.",
+  "tech": ["Python", "PyTorch", "Transformers (Wav2Vec2)", "librosa", "scikit-learn"],
+  "github": "https://github.com/P1yushhhh/Speech-emotion-recognition-using-Transformers",
+  "demo": "",
+  "highlights": [
+    "Achieved 95% accuracy and a 0.949 macro F1-score for 8-class emotion recognition.",
+    "Leverages a state-of-the-art Wav2Vec2 transformer for end-to-end feature extraction from raw speech.",
+    "Demonstrates robust per-class performance, including perfect F1-scores for 'Disgust' and near-perfect for 'Angry'."
+  ]
+}
+]
+}

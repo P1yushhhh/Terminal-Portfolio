@@ -10,32 +10,28 @@ export default function Home() {
 
   return (
     <main 
-      className="min-h-screen w-full flex items-center justify-center py-24 px-4"
-      style={{ backgroundColor: '#000000' }}
+      style={{ 
+        backgroundColor: currentTheme.colors.bg,
+        height: '100vh',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        margin: 0,
+        padding: 0,
+        overflow: 'hidden',
+      }}
     >
-      {/* Terminal window container */}
       <div 
-        className="w-full max-w-4xl rounded-lg overflow-hidden shadow-2xl border-2"
         style={{ 
-          borderColor: currentTheme.colors.accent,
-          height: '600px',
+          borderTop: `2px solid ${currentTheme.colors.accent}`,
+          flex: 1,
           display: 'flex',
           flexDirection: 'column',
+          minHeight: 0,
         }}
       >
-        {/* Window chrome */}
         <WindowChrome />
-
-        {/* Terminal component */}
-        <div 
-          style={{ 
-            flex: 1,
-            backgroundColor: currentTheme.colors.bg,
-            overflow: 'hidden',
-          }}
-        >
-          <Terminal />
-        </div>
+        <Terminal />
       </div>
     </main>
   );

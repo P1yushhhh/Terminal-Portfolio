@@ -4,7 +4,13 @@ import React from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 export default function WindowChrome() {
-  const { currentTheme } = useTheme();
+  const { currentTheme, setTheme, availableThemes } = useTheme();
+
+  const handleThemeClick = () => {
+    const currentIndex = availableThemes.indexOf(currentTheme.name);
+    const nextIndex = (currentIndex + 1) % availableThemes.length;
+    setTheme(availableThemes[nextIndex]);
+  };
 
   return (
     <div 
@@ -100,18 +106,29 @@ export default function WindowChrome() {
         guest@portfolio.dev
       </div>
 
-      {/* Theme indicator (current theme name) */}
-      <div 
+      {/* Theme switcher button - NOW CLICKABLE */}
+      <button
+        onClick={handleThemeClick}
         style={{ 
           fontSize: '12px',
           padding: '4px 8px',
           borderRadius: '4px',
           color: currentTheme.colors.accent,
           backgroundColor: currentTheme.colors.accent + '33',
+          border: 'none',
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
         }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = currentTheme.colors.accent + '55';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = currentTheme.colors.accent + '33';
+        }}
+        title="Click to change theme"
       >
         {currentTheme.displayName}
-      </div>
+      </button>
     </div>
   );
 }

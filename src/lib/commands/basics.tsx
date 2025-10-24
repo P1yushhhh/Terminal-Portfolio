@@ -25,9 +25,6 @@ registerCommand({
             </div>
           ))}
         </div>
-        <div style={{ marginTop: '16px', opacity: 0.6, fontSize: '14px' }}>
-          Type <span style={{ color: '#50fa7b' }}>command --help</span> for detailed usage
-        </div>
       </div>
     );
   },

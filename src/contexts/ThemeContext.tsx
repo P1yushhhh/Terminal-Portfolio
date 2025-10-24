@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Define available themes
-export type ThemeName = 'matrix' | 'vscode' | 'dracula' | 'nord' | 'ubuntu' | 'cyberpunk';
+export type ThemeName = 'dracula' | 'matrix' | 'vscode'  | 'nord' | 'ubuntu' | 'cyberpunk';
 
 // Theme configuration interface
 interface Theme {
@@ -70,9 +70,9 @@ export const themes: Record<ThemeName, Theme> = {
     colors: {
       bg: '#300a24',
       text: '#ffffff',
-      accent: '#dd4814',
-      prompt: '#5e2750',
-      error: '#ff0000',
+      accent: '#e95420',
+      prompt: '#dd4814',
+      error: '#ff4136',
     },
   },
   cyberpunk: {
@@ -100,7 +100,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 // Provider component
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [currentTheme, setCurrentTheme] = useState<Theme>(themes.matrix); // Default to Matrix
+  const [currentTheme, setCurrentTheme] = useState<Theme>(themes.cyberpunk); // Changed to cyberpunk
 
   // Load saved theme from localStorage on mount
   useEffect(() => {

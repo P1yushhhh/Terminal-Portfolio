@@ -5,6 +5,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { useTerminal } from '@/hooks/useTerminal';
 import { executeCommand, getCommandSuggestions } from '@/lib/commands/registry';
 import '@/lib/commands/basics';
+import '@/lib/commands/portfolio';
 
 export default function Terminal() {
   const { currentTheme } = useTheme();
@@ -20,6 +21,7 @@ export default function Terminal() {
   } = useTerminal();
 
   const [suggestions, setSuggestions] = React.useState<string[]>([]);
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -78,32 +80,65 @@ export default function Terminal() {
     }
   }, [currentInput]);
 
-  const handleTerminalClick = () => {
-    inputRef.current?.focus();
-  };
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollContainer.scrollTo({
+          top: scrollContainer.scrollHeight,
+          behavior: 'smooth'
+        });
+      });
+    });
+  }, [outputs]);
 
   return (
     <div
-      onClick={handleTerminalClick}
       style={{
-        height: '100%',
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        cursor: 'text',
+        minHeight: 0,
       }}
     >
-      <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
-        {outputs.length === 0 && (
-          <div style={{ marginBottom: '24px' }}>
-            <div style={{ color: currentTheme.colors.accent, fontSize: '16px', marginBottom: '8px' }}>
-              Welcome to the Terminal Portfolio
-            </div>
-            <div style={{ color: currentTheme.colors.text, opacity: 0.8 }}>
-              Type <span style={{ color: currentTheme.colors.prompt, fontWeight: 'bold' }}>help</span> to see available commands
-            </div>
-          </div>
-        )}
+      <div 
+        ref={scrollContainerRef}
+        style={{ flex: 1, overflowY: 'auto', padding: '16px' }}
+      >
+        {/* ASCII Art - Always visible */}
+        <div style={{ marginBottom: '24px' }}>
+          <pre style={{ 
+            color: currentTheme.colors.accent, 
+            fontSize: '10px', 
+            lineHeight: '1.2', 
+            fontFamily: 'monospace',
+            marginBottom: '16px',
+            overflow: 'auto'
+          }}>
+{`    _ __    __                           _                  __  
+   (_) /_  / /___ _____ ___  ___  ____  (_)_  ____  _______/ /_ 
+  / / __ \\/ / __ \`/ __ \`__ \\/ _ \\/ __ \\/ / / / / / / / ___/ __ \\
+ / / /_/ / / /_/ / / / / / /  __/ /_/ / / /_/ / /_/ (__  ) / / /
+/_/_.___/_/\\__,_/_/ /_/ /_/\\___/ .___/_/\\__, /\\__,_/____/_/ /_/ 
+                              /_/      /____/`}
+          </pre>
 
+          <div style={{ color: currentTheme.colors.accent, fontSize: '16px', marginBottom: '8px' }}>
+            Welcome to my terminal portfolio. (Version 1.0.0)
+          </div>
+          
+          <div style={{ color: currentTheme.colors.text, opacity: 0.8, marginBottom: '8px' }}>
+            This project's source code can be seen in this project's GitHub repo.
+          </div>
+
+          <div style={{ color: currentTheme.colors.text, opacity: 0.8 }}>
+            For a list of available commands, type <span style={{ color: currentTheme.colors.prompt, fontWeight: 'bold' }}>help</span>.
+          </div>
+        </div>
+
+        {/* Command history */}
         {outputs.map((output) => (
           <div key={output.id} style={{ marginBottom: '20px' }}>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
@@ -116,6 +151,7 @@ export default function Terminal() {
           </div>
         ))}
 
+        {/* Current input prompt */}
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <span style={{ color: currentTheme.colors.prompt, whiteSpace: 'nowrap' }}>
             guest@portfolio:~$
@@ -142,8 +178,15 @@ export default function Terminal() {
           />
         </form>
 
+        {/* Autocomplete suggestions */}
         {suggestions.length > 0 && (
-          <div style={{ paddingLeft: '16px', marginTop: '8px', opacity: 0.6, fontSize: '14px' }}>
+          <div style={{ 
+            paddingLeft: '16px', 
+            marginTop: '8px', 
+            opacity: 0.8, 
+            fontSize: '14px', 
+            color: currentTheme.colors.text 
+          }}>
             Suggestions: {suggestions.map((sug, i) => (
               <span key={sug}>
                 <span style={{ color: currentTheme.colors.accent }}>{sug}</span>
