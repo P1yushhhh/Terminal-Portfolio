@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Define available themes
-export type ThemeName = 'dracula' | 'matrix' | 'vscode'  | 'nord' | 'ubuntu' | 'cyberpunk';
+export type ThemeName = 'dracula' | 'matrix' | 'vscode' | 'nord' | 'ubuntu' | 'cyberpunk';
 
 // Theme configuration interface
 interface Theme {
@@ -100,21 +100,43 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 // Provider component
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [currentTheme, setCurrentTheme] = useState<Theme>(themes.cyberpunk); // Changed to cyberpunk
+  // ✅ Initialize with default theme
+  const [currentTheme, setCurrentTheme] = useState<Theme>(themes.cyberpunk);
+  const [mounted, setMounted] = useState(false);
 
-  // Load saved theme from localStorage on mount
+  // ✅ Load saved theme ONLY on client side after mount (prevents hydration mismatch)
   useEffect(() => {
-    const savedTheme = localStorage.getItem('terminal-theme') as ThemeName;
-    if (savedTheme && themes[savedTheme]) {
-      setCurrentTheme(themes[savedTheme]);
+    setMounted(true);
+
+    try {
+      const savedTheme = localStorage.getItem('terminal-theme');
+      
+      // ✅ Validate saved theme exists in themes object
+      if (savedTheme && savedTheme in themes) {
+        setCurrentTheme(themes[savedTheme as ThemeName]);
+      }
+    } catch (error) {
+      // ✅ Handle localStorage errors (Safari private mode, security policies)
+      console.warn('Failed to load saved theme:', error);
+      // Fallback to default theme (already set in useState)
     }
   }, []);
 
-  // Function to change theme
+  // ✅ Function to change theme with validation and error handling
   const setTheme = (themeName: ThemeName) => {
-    if (themes[themeName]) {
-      setCurrentTheme(themes[themeName]);
+    if (!themes[themeName]) {
+      console.error(`Theme "${themeName}" does not exist`);
+      return;
+    }
+
+    setCurrentTheme(themes[themeName]);
+
+    // ✅ Save to localStorage with error handling
+    try {
       localStorage.setItem('terminal-theme', themeName);
+    } catch (error) {
+      console.warn('Failed to save theme to localStorage:', error);
+      // Theme still works, just won't persist across sessions
     }
   };
 
@@ -123,6 +145,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme,
     availableThemes: Object.keys(themes) as ThemeName[],
   };
+
+  // ✅ Prevent flash of unstyled content during hydration
+  // Server renders with default theme, then client loads saved theme
+  if (!mounted) {
+    return (
+      <ThemeContext.Provider value={value}>
+        <div style={{ visibility: 'hidden' }}>{children}</div>
+      </ThemeContext.Provider>
+    );
+  }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
