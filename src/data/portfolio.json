@@ -2,8 +2,8 @@
   "name": "Piyush Chawla",
   "title": "Software Engineer | Backend, MLOps, Cloud | Fast Learner, Faster Shipper",
   "location": "India",
-  "email": "p1yushchawla2307@gmail.com",
-  "linkedin": "www.linkedin.com/in/piyush-chawla-510675282",
+  "email": "p1yushhhchawla2307@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/piyush-chawla-510675282",
   "github": "https://github.com/p1yushhhh",
   "resume": "/Piyush_Resume_MLE.pdf",
   
@@ -128,7 +128,7 @@
     "name": "Hindi Text Summarizer",
     "description": "Sequence-to-sequence Transformer model built from scratch for abstractive Hindi news summarization on 300k-article corpus",
     "tech": ["PyTorch", "TensorFlow", "Keras", "NLP", "Transformers"],
-    "github": "https://github.com/yourusername/hindi-summarizer",
+    "github": "",
     "demo": "",
     "highlights": [
       "ROUGE-1 F1 score of 0.67 on 300k Hindi news articles",
