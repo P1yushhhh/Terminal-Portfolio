@@ -9,6 +9,11 @@ export interface CommandOutput {
   timestamp: Date;
 }
 
+const MAX_HISTORY = 100; // Limit command history to prevent memory issues
+
+// Counter for guaranteed unique IDs
+let commandCounter = 0;
+
 export function useTerminal() {
   const [outputs, setOutputs] = useState<CommandOutput[]>([]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
@@ -18,7 +23,7 @@ export function useTerminal() {
 
   const addOutput = useCallback((command: string, output: React.ReactNode) => {
     const newOutput: CommandOutput = {
-      id: `${Date.now()}-${Math.random()}`,
+      id: `cmd-${Date.now()}-${++commandCounter}`,
       command,
       output,
       timestamp: new Date(),
@@ -28,11 +33,27 @@ export function useTerminal() {
 
   const clearOutputs = useCallback(() => {
     setOutputs([]);
+    setTimeout(() => inputRef.current?.focus(), 0);
   }, []);
 
   const addToHistory = useCallback((command: string) => {
-    if (command.trim()) {
-      setCommandHistory((prev) => [...prev, command]);
+    const trimmed = command.trim();
+    if (trimmed) {
+      setCommandHistory((prev) => {
+        // Don't add duplicate if same as last command
+        if (prev.length > 0 && prev[prev.length - 1] === trimmed) {
+          return prev;
+        }
+
+        const newHistory = [...prev, trimmed];
+        
+        // Limit history size to prevent memory issues
+        if (newHistory.length > MAX_HISTORY) {
+          return newHistory.slice(-MAX_HISTORY);
+        }
+        
+        return newHistory;
+      });
       setHistoryIndex(-1);
     }
   }, []);
@@ -49,10 +70,15 @@ export function useTerminal() {
         setHistoryIndex(newIndex);
         setCurrentInput(commandHistory[newIndex] || '');
       } else {
-        const newIndex =
-          historyIndex === -1 ? -1 : Math.min(commandHistory.length - 1, historyIndex + 1);
-        setHistoryIndex(newIndex);
-        setCurrentInput(newIndex === -1 ? '' : commandHistory[newIndex] || '');
+        const newIndex = historyIndex + 1;
+
+        if (newIndex >= commandHistory.length) {
+          setHistoryIndex(-1);
+          setCurrentInput('');
+        } else {
+          setHistoryIndex(newIndex);
+          setCurrentInput(commandHistory[newIndex] || '');
+        }
       }
     },
     [commandHistory, historyIndex]
@@ -60,7 +86,7 @@ export function useTerminal() {
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, [outputs]);
+  }, []);
 
   return {
     outputs,
