@@ -1,6 +1,9 @@
 import React from 'react';
 import { registerCommand } from './registry';
 import portfolioData from '@/data/portfolio.json';
+import type { Portfolio } from '@/types/portfolio';
+
+const portfolio: Portfolio = portfolioData;
 
 // WHOAMI command - Shows full About Me content
 registerCommand({
