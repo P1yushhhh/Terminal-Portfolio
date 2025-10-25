@@ -80,10 +80,12 @@ export default function Terminal() {
     }
   }, [currentInput]);
 
+  // ✅ IMPROVED: Better scroll performance
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
 
+    // Double RAF for smoother animation
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         scrollContainer.scrollTo({
@@ -94,7 +96,7 @@ export default function Terminal() {
     });
   }, [outputs]);
 
-  // Mobile-specific: Focus input when terminal is tapped
+  // ✅ IMPROVED: Mobile focus management
   useEffect(() => {
     const handleTap = () => {
       if (inputRef.current && window.innerWidth <= 768) {
@@ -120,7 +122,7 @@ export default function Terminal() {
         display: 'flex',
         flexDirection: 'column',
         minHeight: 0,
-        overflow: 'hidden', // Prevent container overflow
+        overflow: 'hidden',
       }}
     >
       <div 
@@ -128,12 +130,12 @@ export default function Terminal() {
         style={{ 
           flex: 1, 
           overflowY: 'auto', 
-          overflowX: 'hidden', // Prevent horizontal scroll
+          overflowX: 'hidden',
           padding: '16px',
-          WebkitOverflowScrolling: 'touch', // Smooth scrolling on iOS
+          WebkitOverflowScrolling: 'touch',
         }}
       >
-        {/* ASCII Art - Always visible */}
+        {/* ASCII Art Banner */}
         <div style={{ marginBottom: '24px' }}>
           <pre style={{ 
             color: currentTheme.colors.accent, 
@@ -142,8 +144,8 @@ export default function Terminal() {
             fontFamily: 'monospace',
             marginBottom: '16px',
             overflow: 'auto',
-            whiteSpace: 'pre', // Prevent text wrapping in ASCII art
-            maxWidth: '100%', // Prevent overflow
+            whiteSpace: 'pre',
+            maxWidth: '100%',
           }}>
 {`    _ __    __                           _                  __  
    (_) /_  / /___ _____ ___  ___  ____  (_)_  ____  _______/ /_ 
@@ -157,8 +159,21 @@ export default function Terminal() {
             Welcome to my terminal portfolio. (Version 1.0.0)
           </div>
           
+          {/* ✅ FIXED: Added clickable GitHub link */}
           <div style={{ color: currentTheme.colors.text, opacity: 0.8, marginBottom: '8px' }}>
-            This project's source code can be seen in this project's GitHub repo.
+            This project's source code can be seen in{' '}
+            <a 
+              href="https://github.com/p1yushhhh/terminal-portfolio" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ 
+                color: currentTheme.colors.accent,
+                textDecoration: 'underline',
+                cursor: 'pointer',
+              }}
+            >
+              this project's GitHub repo
+            </a>.
           </div>
 
           <div style={{ color: currentTheme.colors.text, opacity: 0.8 }}>
@@ -187,18 +202,20 @@ export default function Terminal() {
           <input
             ref={inputRef}
             type="text"
+            id="terminal-input"  
+            name="terminal-input"  
             value={currentInput}
             onChange={(e) => setCurrentInput(e.target.value)}
             onKeyDown={handleKeyDown}
             style={{
               flex: 1,
-              minWidth: 0, // Allow flex shrinking
+              minWidth: 0,
               background: 'transparent',
               border: 'none',
               outline: 'none',
               color: currentTheme.colors.text,
               fontFamily: 'inherit',
-              fontSize: '16px', // Prevent iOS zoom
+              fontSize: '16px',
               caretColor: currentTheme.colors.accent,
             }}
             autoFocus
@@ -206,6 +223,8 @@ export default function Terminal() {
             autoComplete="off"
             autoCapitalize="off"
             autoCorrect="off"
+            aria-label="Terminal command input"  
+            role="textbox"  
           />
         </form>
 
