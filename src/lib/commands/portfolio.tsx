@@ -5,6 +5,19 @@ import type { Portfolio } from '@/types/portfolio';
 
 const portfolio: Portfolio = portfolioData;
 
+const validatePortfolio = (data: any): data is Portfolio => {
+  return (
+    typeof data.name === 'string' &&
+    typeof data.email === 'string' &&
+    data.email.includes('@') &&
+    Array.isArray(data.projects)
+  );
+};
+
+if (!validatePortfolio(portfolioData)) {
+  console.error('Invalid portfolio data structure');
+}
+
 // WHOAMI command - Shows full About Me content
 registerCommand({
   name: 'whoami',
