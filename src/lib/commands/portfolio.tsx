@@ -74,6 +74,40 @@ registerCommand({
               margin: '8px 0 16px 0' 
             }} />
 
+            {/* ✅ TL;DR Section - only show if tldr exists */}
+            {(portfolioData as any).tldr && (
+              <>
+                <div style={{ 
+                  color: colors.prompt, 
+                  fontSize: '16px', 
+                  fontWeight: 'bold',
+                  marginBottom: '8px'
+                }}>
+                  TL;DR:
+                </div>
+                
+                <p style={{ 
+                  lineHeight: '1.6', 
+                  opacity: 0.9, 
+                  color: colors.text,
+                  fontStyle: 'italic',
+                  backgroundColor: `${colors.accent}11`,
+                  padding: '12px',
+                  borderRadius: '4px',
+                  borderLeft: `3px solid ${colors.accent}`
+                }}>
+                  {(portfolioData as any).tldr}
+                </p>
+
+                {/* Divider before About Me */}
+                <div style={{ 
+                  borderTop: `1px solid ${colors.text}`, 
+                  opacity: 0.3,
+                  margin: '16px 0' 
+                }} />
+              </>
+            )}
+
             {/* About section header */}
             <div style={{ 
               color: colors.accent, 

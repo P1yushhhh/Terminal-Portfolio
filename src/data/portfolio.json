@@ -7,16 +7,18 @@
   "github": "https://github.com/p1yushhhh",
   "resume": "/Piyush_Resume_MLE.pdf",
   
- "about": [
-  "Hi! I'm Piyush, a 4th-year Electronics and Computer Science student at Thapar Institute of Engineering who believes the best way to learn is by shipping.",
+  "tldr": "Piyush: 4th-year CS student at Thapar, freelance hustler turned data-driven builder in backend, MLOps, and cloud. Ex-AIESEC product lead with awards; chasing SDE roles to ship scalable systems. Off-duty: gaming, cooking, sitcoms, and psych deep-dives.",
   
-  "I've freelanced across ML, cloud infrastructure, cybersecurity forensics, blockchain, and data science—often jumping into domains I knew nothing about and delivering results that stuck. From building MLOps pipelines on AWS to analyzing security incidents on blue teams, I've learned that strong fundamentals (DSA, system design, OOP) and AI-powered problem-solving beat prior experience every time.",
+  "about": [
+  "Hi, I'm Piyush—a 4th-year Electronics and Computer Science student at Thapar Institute of Engineering. For me, the real learning happens when you ship something and see it run in the wild.",
   
-  "My sweet spot? Backend architecture, MLOps, and cloud infrastructure. I love designing systems that scale, automating workflows that shouldn't be manual, and debugging things that 'definitely worked yesterday.'",
+  "I've freelanced in a bunch of areas—ML, cloud infrastructure, cybersecurity forensics, blockchain, data science—back when I was bouncing around as a digital nomad, figuring out my niche. Whether it was spinning up MLOps pipelines on AWS or breaking down security incidents on blue teams, one thing stuck: solid fundamentals like DSA, system design, and OOP, combined with smart AI tools, outperform textbook crammers 10/10 times",
   
-  "Previously led product at AIESEC India, coordinating 100+ international participants while building operational efficiency that actually moved metrics. Now I'm focused on landing an SDE role where I can build, break, and optimize production systems.",
+  "Now, I'm all about data-driven work. Backend architecture, MLOps, cloud infrastructure and i won't stop grinding until one day i see someone using a product i made . I get a kick out of building systems that scale smoothly, automating the repetitive stuff, and hunting down bugs that vanished overnight",
   
-  "When I'm not coding, I'm either gaming, cooking elaborate meals on my hostel room electric pan (Gordon Ramsay would be horrified)"
+  "Before this, I led product efforts at AIESEC India, managing over 100 international participants and streamlining operations to hit real metrics, which earned us national and international Excellence awards. Right now, I'm geared up for an SDE role where I can build, test the limits, and refine production systems that make a difference.",
+  
+  "When I'm not heads-down on projects, you'll find me gaming, whipping up meals in the hostel on my electric stove, or catching up on sitcoms. P.S. I'm a bit of a psychology nerd"
 ],
   
 "education": [
